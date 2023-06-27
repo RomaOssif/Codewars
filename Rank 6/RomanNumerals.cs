@@ -10,9 +10,9 @@ public enum Roman
 	M = 1000,
 }
 
-public static class RomanDecoder
+public static class RomanNumerals
 {
-	public static int Decoder(string roman)
+	public static int Decode(string roman)
 	{
 		int sum = 0;
 
