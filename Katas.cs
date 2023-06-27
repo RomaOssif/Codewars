@@ -9,6 +9,7 @@ namespace Codewars
         public static void Main(string[] args)
         {
             Console.WriteLine(RomanNumerals.Decode("MDCLXVI"));
+            Console.WriteLine(RomanNumerals.Encode(1666));
         }
     }
 }
