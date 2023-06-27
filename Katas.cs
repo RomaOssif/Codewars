@@ -8,6 +8,7 @@ namespace Codewars
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine(RomanDecoder.Decoder("MDCLXVI"));
         }
     }
 }
