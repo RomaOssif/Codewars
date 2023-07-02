@@ -8,6 +8,7 @@ namespace Codewars
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine(StripCommentsKata.StripComments("a #b\nc\nd $e f g", new string[] { "#", "$" }));
         }
     }
 }

@@ -18,12 +18,12 @@ namespace Codewars
                 {
                     if (sentence.Contains(symbol))
                     {
-                        toAdd = sentence.Remove(sentence.IndexOf(symbol)).Trim();
+                        toAdd = sentence.Remove(sentence.IndexOf(symbol));
                         break;
                     }
                 }
 
-                result.Add(toAdd);
+                result.Add(toAdd.Trim());
             }
 
             return string.Join('\n', result);
