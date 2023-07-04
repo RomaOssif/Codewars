@@ -10,44 +10,33 @@ namespace Codewars
             if (seconds == 0)
                 return "now";
 
-            int _years = seconds / 31_536_000;
-            int _days = seconds / 86_400 % 365;
-            int _hours = seconds / 3600 % 24;
-            int _minutes = seconds / 60 % 60;
-            int _seconds = seconds % 60;
+            int[] timeIntervals =
+            {
+                seconds / 31_536_000,
+                seconds / 86_400 % 365,
+                seconds / 3600 % 24,
+                seconds / 60 % 60,
+                seconds % 60
+            };
+
+            string[] timeLiterals = { "year", "day", "hour", "minute", "second" };
 
             List<string> time = new List<string>();
 
-            if(_years > 0)
-                time.Add($"{_years} {(_years > 1? "years" : "year" )}");
-
-            if (_days > 0)
-                time.Add(_days.ToString() + " " + (_days > 1 ? "days" : "day"));
-
-            if (_hours > 0)
-                time.Add(_hours.ToString() + " " + (_seconds > 1 ? "hours" : "hour"));
-
-            if (_minutes > 0)
-                time.Add(_minutes.ToString() + " " + (_minutes > 1 ? "minutes" : "minute"));
-
-            if (_seconds > 0)
-                time.Add(_seconds.ToString() + " " + (_seconds > 1 ? "seconds" : "second"));
-
+            for (int i = 0; i < 5; i++)
+            {
+                if (timeIntervals[i] > 0)
+                    time.Add($"{timeIntervals[i]} {timeLiterals[i]}" + (timeIntervals[i] > 1 ? "s" : ""));
+            }
 
             if (time.Count >= 3)
-            {
-                return $"{string.Join(", ", time.Take(time.Count - 1))} and {time[time.Count - 1]}";
-            }
+                return string.Join(", ", time.SkipLast(1)) + $" and {time.Last()}";
 
             else if (time.Count == 2)
-            {
                 return string.Join(" and ", time);
-            }
 
             else
-            {
                 return time[0];
-            }
         }
     }
 }
