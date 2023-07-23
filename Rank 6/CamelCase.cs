@@ -7,14 +7,8 @@ namespace Codewars
         public static string ToCamelCase(string str)
         {
             string[] words = str.Split('_', '-');
-            string camel = words[0];
 
-            foreach (string word in words.Skip(1))
-            {
-                camel += word[0].ToString().ToUpper() + word.Substring(1);
-            }
-
-            return camel;
+            return words[0] + string.Concat(words.Skip(1).Select(e => e[0].ToString().ToUpper() + e.Substring(1)));
         }
     }
 }
