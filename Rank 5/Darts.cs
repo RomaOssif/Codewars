@@ -17,8 +17,7 @@
             double cosZ = (y * 170) / (shotRadius * wholeRadius);
 
             double degrees = Math.Acos(cosZ) * (180 / Math.PI);
-
-            double trueDegrees = (x >= 0) ? degrees + 9 : 369 - degrees;
+            degrees = (x >= 0) ? degrees + 9 : 369 - degrees;
 
             string multiplier;
 
@@ -38,40 +37,7 @@
                 14, 9, 12, 5
             };
 
-            return multiplier + scores[(int)Math.Floor(trueDegrees / 18) % 20];
+            return multiplier + scores[(int)Math.Floor(degrees / 18) % 20];
         }
     }
 }
-
-/*
- * Outside of the board: `"X"`
-Bull's eye: `"DB"`
-Bull: `"SB"`
-A single number, example: `"10"`
-A triple number: `"T10"`
-A double number: `"D10"`
-difference^2 = (x1-x2)^2 + (y1-y2)^2
-wholeRadius^2 = x2^2 + y^2
-*/
-
-// 5 3
-// 12 6
-// 7 3
-
-/*
- * v1 = x1, y1
- * v2 = y2, y2
- * 
- * n1 = -y1, x1
- * 
- * projection = x2 * n1.x + y2 * n1.y
- * Or rather:
- * projection = x2 * (-y1) + y2 * x1
- * bool areClockWise(v1, v2)
- * return (-v1.y*v2.x + v2.y*v1.x) < 0
- * 
- * 
- * 
- * Every part takes 18 degrees between 20 sectors
- * so we moved the vector by 9 degrees?
- */
