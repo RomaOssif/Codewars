@@ -7,8 +7,6 @@
             double shotRadius = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
             double wholeRadius = 170;
 
-            //double difference = wholeRadius - shotRadius;
-
             if (shotRadius < 6.35)
                 return "DB";
             if (shotRadius < 15.9)
@@ -16,17 +14,31 @@
             if (shotRadius > 170)
                 return "X";
 
+            double cosZ = (y * 170) / (shotRadius * wholeRadius);
 
-            double circleX = 0;
-            double circleY = 170;
+            double degrees = Math.Acos(cosZ) * (180 / Math.PI);
 
-            double cosZ = (x * circleX + y * circleY) / (shotRadius * wholeRadius);
+            double trueDegrees = (x >= 0) ? degrees + 9 : 369 - degrees;
 
-            double degreesRad = Math.Acos(cosZ);
+            string multiplier;
 
-            double degrees = degreesRad * (180 / Math.PI);
+            if (shotRadius > 99 && shotRadius < 107)
+                multiplier = "T";
+            else if (shotRadius > 162 && shotRadius < 170)
+                multiplier = "D";
+            else
+                multiplier = "";
 
-            return degrees.ToString();
+            int[] scores =
+            {
+                20, 1, 18, 4,
+                13, 6, 10, 15,
+                2, 17, 3, 19,
+                7, 16, 8, 11,
+                14, 9, 12, 5
+            };
+
+            return multiplier + scores[(int)Math.Floor(trueDegrees / 18) % 20];
         }
     }
 }
