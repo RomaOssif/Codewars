@@ -66,6 +66,31 @@
     }
 }
 
+/* Alternative solution with using preloaded dictionary from the kata: 
+
+using System.Text;
+
+class MorseCodeDecoder
+{
+	public static string Decode(string input)
+  {
+      StringBuilder result = new StringBuilder();
+    
+      foreach (var word in input.Trim().Split("   "))
+      {
+          foreach (var letter in word.Split(" "))
+          {
+              result.Append(MorseCode.Get(letter));
+          }
+          result.Append(' ');
+      }
+
+      return result.ToString().TrimEnd();
+  }
+}
+
+ */
+
 /* Link for the Kata: https://www.codewars.com/kata/54b724efac3d5402db00065e
  * Here is the description for Decode the Morse code kata:
 
